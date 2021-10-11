@@ -1,4 +1,4 @@
-// import React, { Component } from 'react';
+import React/*, { Component }*/ from 'react';
 import {
     Card,
     CardBody,
@@ -12,8 +12,13 @@ import {
  *
 
 class DishDetail extends Component {
-    constructor(props) {
-        super(props);
+
+    componentDidMount = () => {
+        // console.log('DishDetail Component componentDidMount invoked');
+    }
+
+    componentDidUpdate = () => {
+        // console.log('DishDetail Component componentDidUpdate invoked');
     }
 
     renderDish = (dish) => {
@@ -38,6 +43,7 @@ class DishDetail extends Component {
     }
 
     render = () => {
+        // console.log('DishDetail Component render invoked');
         const dish = this.props.dish;
 
         if (dish) {
@@ -64,7 +70,7 @@ class DishDetail extends Component {
  * Functional Component
  */
 
-function renderDish(dish) {
+function RenderDish({dish}) {
     return (
         <Card>
             <CardImg width='100%' src={dish.image} alt={dish.name}/>
@@ -76,7 +82,7 @@ function renderDish(dish) {
     );
 }
 
-function renderComments(comments) {
+function RenderComments({comments}) {
     return comments ? comments.map(c => (
         <ul key={c.id} className='list-unstyled'>
             <li>{c.comment}</li>
@@ -100,11 +106,11 @@ function DishDetail(props) {
             <div className='container'>
                 <div className='row'>
                     <div className='col-12 col-md-5 m-1'>
-                        {renderDish(dish)}
+                        <RenderDish dish={dish}/>
                     </div>
                     <div className='col-12 col-md-5 m-1'>
                         <h4>Comments</h4>
-                        {renderComments(dish.comments)}
+                        <RenderComments comments={dish.comments} />
                     </div>
                 </div>
             </div>
